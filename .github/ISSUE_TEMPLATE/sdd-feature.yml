@@ -1,4 +1,4 @@
-name: "🚀 SDD Feature Request"
+name: "SDD Feature Request"
 description: "스펙킷(Spec Kit) 양식에 따른 기능 요청. Copilot Workspace가 이 양식을 기반으로 Plan/Tasks를 생성합니다."
 title: "[Feature]: "
 labels: ["enhancement", "sdd"]
@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        ## 📋 SDD Feature Request
+        ## SDD Feature Request
         아래 양식을 **빠짐없이** 작성해 주세요. 이 이슈는 Copilot Workspace의 입력으로 사용됩니다.
 
   - type: textarea
