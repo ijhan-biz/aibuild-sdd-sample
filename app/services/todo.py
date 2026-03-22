@@ -14,7 +14,12 @@ def get_todo(todo_id: int) -> TodoResponse | None:
 
 
 def create_todo(body: TodoCreate) -> TodoResponse:
-    raw = store.add_todo(title=body.title, completed=body.completed)
+    raw = store.add_todo(
+        title=body.title,
+        completed=body.completed,
+        due_date=body.due_date,
+        priority=body.priority,
+    )
     return TodoResponse(**raw)
 
 
