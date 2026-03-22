@@ -66,8 +66,18 @@ Tasks는 체크리스트 형태의 작업 단위로 분할할 것:
 - `app/routers/` — API 라우트 정의
 - `app/services/` — 비즈니스 로직
 - `app/data/` — 데이터 저장소
+- `frontend/src/components/` — React UI 컴포넌트
+- `frontend/src/hooks/` — 커스텀 React 훅
+- `frontend/src/api.ts` — 백엔드 API 호출
+- `frontend/src/types.ts` — TypeScript 타입 정의
 
 ### 금지 사항
 - 외부 DB 도입 금지 (인메모리 저장소 유지)
 - 글로벌 상태를 직접 수정하는 라우트 핸들러 금지 (서비스 레이어를 통할 것)
 - `Any` 타입 사용 최소화
+
+### TypeScript / React (프론트엔드)
+- `frontend/src/types.ts`의 타입 정의를 백엔드 Pydantic 모델과 동기화할 것
+- API 호출은 `frontend/src/api.ts`에 집중
+- 컴포넌트는 `frontend/src/components/`에 배치
+- 새 필드 추가 시 백엔드(모델/저장소/서비스)와 프론트엔드(types/api/컴포넌트)를 **함께** 변경할 것

@@ -1,28 +1,33 @@
-# Todo API — SDD Workflow Demo
+# Todo App — SDD Workflow Demo
 
 GitHub Copilot의 **Spec-Driven Development (SDD)** 워크플로우를 시연하기 위한 샘플 프로젝트입니다.
 
-- **스택**: Python 3.11+ / FastAPI / Uvicorn
-- **데이터**: 인메모리 저장소 (DB 없음)
+- **백엔드**: Python 3.9+ / FastAPI / Uvicorn (인메모리 저장소)
+- **프론트엔드**: React + Vite + TailwindCSS
 - **목적**: Issue → Copilot Workspace → Plan/Tasks → PR 자동 파이프라인 데모
 
 ## Quick Start
 
+### 백엔드
+
 ```bash
-# 의존성 설치
 pip install -r requirements.txt
-
-# 서버 실행
-uvicorn app.main:app --reload
-
-# 또는
-python -m app.main
+uvicorn app.main:app --reload --port 8000
 ```
 
-서버가 실행되면:
 - API: http://localhost:8000/todos
 - Swagger UI: http://localhost:8000/docs
-- Health check: http://localhost:8000/health
+- Health: http://localhost:8000/health
+
+### 프론트엔드
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+- UI: http://localhost:5173
 
 ## API Endpoints
 
@@ -35,15 +40,35 @@ python -m app.main
 | DELETE | `/todos/{id}` | Todo 삭제 |
 | GET | `/health` | 헬스 체크 |
 
+## Todo 모델 (현재)
+
+| 필드 | 타입 | 설명 |
+|------|------|------|
+| `id` | int | 자동 생성 |
+| `title` | string | 할 일 제목 |
+| `completed` | bool | 완료 여부 (기본: false) |
+
+> **데모 시나리오**: 여기에 `due_date`, `priority` 필드를 추가하는 이슈를 Copilot Workspace로 처리합니다.
+
 ## Project Structure
 
 ```
 app/
-├── main.py              # FastAPI 앱 엔트리포인트
-├── routers/todo.py      # API 라우트 정의
+├── main.py              # FastAPI 앱 + CORS + CopilotKit 런타임
+├── routers/todo.py      # API 라우트 (CRUD)
 ├── models/todo.py       # Pydantic 모델 (TodoCreate, TodoUpdate, TodoResponse)
 ├── services/todo.py     # 비즈니스 로직
 └── data/store.py        # 인메모리 데이터 저장소
+
+frontend/
+├── src/
+│   ├── App.tsx          # 루트 컴포넌트
+│   ├── components/      # TodoApp, TodoForm, TodoList, TodoItem
+│   ├── hooks/useTodos.ts # Todo CRUD 커스텀 훅
+│   ├── api.ts           # 백엔드 API 호출
+│   └── types.ts         # TypeScript 타입 정의
+├── vite.config.ts       # Vite 설정 (프록시 포함)
+└── tailwind.config.js   # Tailwind 설정
 ```
 
 ## SDD Demo
@@ -55,4 +80,4 @@ app/
 - `demo/DEMO-SCRIPT.md` — 발표자 데모 대본
 
 데모 시나리오: **"Todo에 마감일(due_date) + 우선순위(priority) 필드를 추가해 주세요"**
-→ 이 이슈를 Copilot Workspace로 열면, AI가 Plan/Tasks를 자동 생성하고 구현까지 수행합니다.
+→ 이 이슈를 Copilot Workspace에서 열면, AI가 Plan/Tasks를 자동 생성하고 구현까지 수행합니다.

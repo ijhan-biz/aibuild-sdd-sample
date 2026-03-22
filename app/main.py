@@ -1,5 +1,6 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 from copilotkit.integrations.fastapi import add_fastapi_endpoint
 from copilotkit import CopilotKitRemoteEndpoint
 
@@ -9,6 +10,7 @@ app = FastAPI(
     title="Todo API",
     description="Simple Todo REST API — SDD workflow demo",
     version="0.1.0",
+    redirect_slashes=False,
 )
 
 app.add_middleware(
@@ -24,6 +26,13 @@ app.include_router(todo.router)
 # CopilotKit AG-UI runtime endpoint
 sdk = CopilotKitRemoteEndpoint(actions=[])
 add_fastapi_endpoint(app, sdk, "/copilotkit")
+
+
+@app.api_route("/copilotkit", methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"])
+async def copilotkit_root(request: Request):
+    """Handle /copilotkit without subpath — CopilotKit frontend hits this for info."""
+    info = sdk.info(context={"properties": {}})
+    return JSONResponse(content=info)
 
 
 @app.get("/health")

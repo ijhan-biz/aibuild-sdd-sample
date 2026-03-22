@@ -3,6 +3,7 @@
 > 전체 소요 시간: ~12분
 > 대상: 개발팀
 > 준비물: GitHub 리포 (이 프로젝트가 push된 상태), Copilot Workspace 접근 권한
+> 참고: 이 프로젝트는 백엔드(FastAPI, http://localhost:8000)와 프론트엔드(React+Vite, http://localhost:5173)로 구성
 
 ---
 
@@ -63,7 +64,7 @@
 ### 강조할 것:
 - "이 Plan의 양식을 보세요. '아키텍처 변경 요약'과 '변경 파일 목록 테이블' — 이건 AI가 알아서 한 게 아니라, **copilot-instructions.md에 우리가 강제한 양식**입니다."
 - "Tasks도 보세요. 파일별로 나뉘어 있고, 마지막에 검증 항목이 있습니다. 역시 우리 규칙입니다."
-- "`app/models/todo.py`에 `due_date`, `priority` 추가, `app/data/store.py` 반영... 이슈의 '영향 범위'와 일치하는지 비교해 보세요."
+- "`app/models/todo.py`에 `due_date`, `priority` 추가, `app/data/store.py` 반영, 그리고 프론트엔드 `frontend/src/types.ts`, `TodoForm.tsx`, `TodoItem.tsx` 변경... 이슈의 '영향 범위'와 일치하는지 비교해 보세요."
 
 ### (만약 양식을 안 따랐다면):
 - "양식을 건너뛴 부분이 있네요. 이럴 때 **바로 다음 단계에서 수정 지시**를 내릴 수 있습니다."
@@ -111,3 +112,4 @@
 | Plan 양식이 instructions.md를 안 따름 | "이런 경우 채팅으로 '양식 따라줘'라고 지시하면 됩니다" — 라이브로 수정 시연 |
 | Implement 중 에러 발생 | "실제 개발에서도 이런 일이 있죠. AI가 완벽하진 않습니다. 하지만 80%를 자동화하고 20%만 수정하면 됩니다" |
 | "Open in Workspace" 버튼이 안 보임 | Copilot 라이선스 / Workspace 기능 활성화 확인 필요 |
+| 프론트엔드가 안 뜸 | `cd frontend && npm run dev` 확인, 백엔드 CORS 설정 확인 |

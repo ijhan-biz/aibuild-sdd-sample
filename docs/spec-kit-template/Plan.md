@@ -14,6 +14,9 @@
 | `app/routers/xxx.py` | 수정 | (변경 내용 한 줄 요약) |
 | `app/services/xxx.py` | 수정 | (변경 내용 한 줄 요약) |
 | `app/data/xxx.py` | 수정 | (변경 내용 한 줄 요약) |
+| `frontend/src/types.ts` | 수정 | (타입 정의 변경) |
+| `frontend/src/api.ts` | 수정 | (API 호출 변경) |
+| `frontend/src/components/xxx.tsx` | 수정 | (UI 컴포넌트 변경) |
 
 ### 하위 호환성
 (기존 API와의 호환성에 미치는 영향을 명시)
