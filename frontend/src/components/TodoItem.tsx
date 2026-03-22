@@ -1,17 +1,5 @@
 import type { Todo } from "../types";
 
-const PRIORITY_BADGE: Record<Todo["priority"], string> = {
-  high: "bg-red-100 text-red-700",
-  medium: "bg-yellow-100 text-yellow-700",
-  low: "bg-green-100 text-green-700",
-};
-
-const PRIORITY_LABEL: Record<Todo["priority"], string> = {
-  high: "높음",
-  medium: "보통",
-  low: "낮음",
-};
-
 interface Props {
   todo: Todo;
   onToggle: (id: number, completed: boolean) => Promise<unknown>;
@@ -36,14 +24,6 @@ export default function TodoItem({ todo, onToggle, onDelete }: Props) {
           {todo.title}
         </p>
         <div className="flex gap-2 mt-1 text-xs">
-          <span
-            className={`px-2 py-0.5 rounded-full font-medium ${PRIORITY_BADGE[todo.priority]}`}
-          >
-            {PRIORITY_LABEL[todo.priority]}
-          </span>
-          {todo.due_date && (
-            <span className="text-gray-500">📅 {todo.due_date}</span>
-          )}
           <span className="text-gray-300">#{todo.id}</span>
         </div>
       </div>

@@ -21,12 +21,8 @@ export function useTodos() {
   }, [refresh]);
 
   const addTodo = useCallback(
-    async (title: string, priority?: string, dueDate?: string) => {
-      const todo = await api.createTodo({
-        title,
-        priority: (priority as Todo["priority"]) || "medium",
-        due_date: dueDate || null,
-      });
+    async (title: string) => {
+      const todo = await api.createTodo({ title });
       setTodos((prev) => [...prev, todo]);
       return todo;
     },
