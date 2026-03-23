@@ -4,6 +4,10 @@
   "features": {
     "ghcr.io/devcontainers/features/node:1": {
       "version": "20"
+    },
+    "ghcr.io/devcontainers/features/azure-cli:1": {
+      "installBicep": false,
+      "extensions": ""
     }
   },
   "forwardPorts": [8000, 5173],
