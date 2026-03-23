@@ -1,0 +1,15 @@
+# CODEOWNERS — PR 자동 리뷰어 지정
+# https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# 백엔드 (FastAPI)
+app/models/     @ijhan-biz
+app/routers/    @ijhan-biz
+app/services/   @ijhan-biz
+app/data/       @ijhan-biz
+app/main.py     @ijhan-biz
+
+# 프론트엔드 (React)
+frontend/src/   @ijhan-biz
+
+# GitHub 설정
+.github/        @ijhan-biz
