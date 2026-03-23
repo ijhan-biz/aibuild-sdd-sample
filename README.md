@@ -1,5 +1,7 @@
 # Todo App — SDD Workflow Demo
 
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/ijhan-biz/aibuild-sdd-sample?quickstart=1)
+
 GitHub Copilot의 **Spec-Driven Development (SDD)** 워크플로우를 시연하기 위한 샘플 프로젝트입니다.
 
 - **백엔드**: Python 3.9+ / FastAPI / Uvicorn (인메모리 저장소)
@@ -8,7 +10,16 @@ GitHub Copilot의 **Spec-Driven Development (SDD)** 워크플로우를 시연하
 
 ## Quick Start
 
-### 백엔드
+### GitHub Codespaces (권장)
+
+위의 **"Open in GitHub Codespaces"** 버튼을 클릭하면:
+1. Python 3.11 + Node 20 환경이 자동 구성됩니다
+2. 백엔드(FastAPI :8000) + 프론트엔드(Vite :5173)가 자동 실행됩니다
+3. 브라우저에서 프론트엔드 UI가 자동으로 열립니다
+
+### 로컬 실행
+
+#### 백엔드
 
 ```bash
 pip install -r requirements.txt

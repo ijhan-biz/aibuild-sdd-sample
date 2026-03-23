@@ -1,3 +1,6 @@
+import os
+import re
+
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
@@ -13,9 +16,20 @@ app = FastAPI(
     redirect_slashes=False,
 )
 
+# CORS — localhost + Codespaces (*.app.github.dev)
+ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+]
+codespace_name = os.environ.get("CODESPACE_NAME")
+if codespace_name:
+    ALLOWED_ORIGINS.append(f"https://{codespace_name}-5173.app.github.dev")
+
+CODESPACES_ORIGIN_RE = re.compile(r"^https://[a-z0-9-]+-5173\.app\.github\.dev$")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=ALLOWED_ORIGINS,
+    allow_origin_regex=r"https://[a-z0-9-]+-5173\.app\.github\.dev",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
