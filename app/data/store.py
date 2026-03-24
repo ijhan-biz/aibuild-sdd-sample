@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import datetime
+
 _todos: list[dict] = []
 _next_id: int = 1
 
@@ -19,9 +21,20 @@ def get_todo(todo_id: int) -> dict | None:
     return next((t for t in _todos if t["id"] == todo_id), None)
 
 
-def add_todo(title: str, completed: bool = False) -> dict:
+def add_todo(
+    title: str,
+    completed: bool = False,
+    due_date: datetime.date | None = None,
+    priority: str = "medium",
+) -> dict:
     global _next_id
-    todo = {"id": _next_id, "title": title, "completed": completed}
+    todo = {
+        "id": _next_id,
+        "title": title,
+        "completed": completed,
+        "due_date": due_date,
+        "priority": priority,
+    }
     _todos.append(todo)
     _next_id += 1
     return todo
@@ -32,8 +45,7 @@ def update_todo(todo_id: int, **fields: object) -> dict | None:
     if todo is None:
         return None
     for key, value in fields.items():
-        if value is not None:
-            todo[key] = value
+        todo[key] = value
     return todo
 
 

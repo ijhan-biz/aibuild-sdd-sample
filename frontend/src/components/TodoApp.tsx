@@ -1,10 +1,14 @@
 import { useTodos } from "../hooks/useTodos";
 import TodoList from "./TodoList";
 import TodoForm from "./TodoForm";
+import type { Priority } from "../types";
 
 export default function TodoApp() {
   const { todos, loading, addTodo, toggleTodo, editTodo, removeTodo } =
     useTodos();
+
+  const handleAdd = (title: string, due_date?: string | null, priority?: Priority) =>
+    addTodo(title, due_date, priority);
 
   return (
     <div className="max-w-2xl mx-auto py-8 px-4">
@@ -15,7 +19,7 @@ export default function TodoApp() {
         </p>
       </header>
 
-      <TodoForm onAdd={addTodo} />
+      <TodoForm onAdd={handleAdd} />
 
       {loading ? (
         <p className="text-center text-gray-400 py-8">로딩 중...</p>

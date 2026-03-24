@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import type { Todo } from "../types";
+import type { Todo, Priority } from "../types";
 import * as api from "../api";
 
 export function useTodos() {
@@ -21,8 +21,8 @@ export function useTodos() {
   }, [refresh]);
 
   const addTodo = useCallback(
-    async (title: string) => {
-      const todo = await api.createTodo({ title });
+    async (title: string, due_date?: string | null, priority?: Priority) => {
+      const todo = await api.createTodo({ title, due_date, priority });
       setTodos((prev) => [...prev, todo]);
       return todo;
     },
