@@ -1,4 +1,16 @@
-import type { Todo } from "../types";
+import type { Todo, Priority } from "../types";
+
+const PRIORITY_LABEL: Record<Priority, string> = {
+  low: "낮음",
+  medium: "보통",
+  high: "높음",
+};
+
+const PRIORITY_CLASS: Record<Priority, string> = {
+  low: "bg-gray-100 text-gray-600",
+  medium: "bg-blue-100 text-blue-700",
+  high: "bg-red-100 text-red-700",
+};
 
 interface Props {
   todo: Todo;
@@ -23,8 +35,16 @@ export default function TodoItem({ todo, onToggle, onDelete }: Props) {
         >
           {todo.title}
         </p>
-        <div className="flex gap-2 mt-1 text-xs">
+        <div className="flex gap-2 mt-1 text-xs items-center">
           <span className="text-gray-300">#{todo.id}</span>
+          <span
+            className={`px-2 py-0.5 rounded-full font-medium ${PRIORITY_CLASS[todo.priority]}`}
+          >
+            {PRIORITY_LABEL[todo.priority]}
+          </span>
+          {todo.due_date && (
+            <span className="text-gray-500">📅 {todo.due_date}</span>
+          )}
         </div>
       </div>
 

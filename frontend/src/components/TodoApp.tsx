@@ -1,10 +1,14 @@
 import { useTodos } from "../hooks/useTodos";
 import TodoList from "./TodoList";
 import TodoForm from "./TodoForm";
+import type { Priority } from "../types";
 
 export default function TodoApp() {
   const { todos, loading, addTodo, toggleTodo, editTodo, removeTodo } =
     useTodos();
+
+  const handleAdd = (title: string, due_date?: string | null, priority?: Priority) =>
+    addTodo(title, due_date, priority);
 
   return (
     <div className="min-h-screen">
